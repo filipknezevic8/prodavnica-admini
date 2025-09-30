@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online prodavnica - Admin</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+            width: 170px;
+        }
+        #details, #form-container {
+            border: 1px solid black;
+            padding: 10px;
+            width: 170px;
+        }
+        #details {
+            margin-top: 20px;
+        }
+        #table-form {
+            display: flex;
+            gap: 50px;
+        }
+        #submitBtn {
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Artikli</h1>
+    <hr>
+    <div id="table-form">
+        <table id="productsTable">
+            <thead>
+                <tr>
+                    <th>Br</th>
+                    <th>Naziv</th>
+                    <th>Cena($)</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="form-container">
+            <form id="productForm">
+                <label for="naziv">Naziv:</label>
+                <input type="text" id="naziv" name="naziv"><br>
+
+                <label for="cena">Cena:</label>
+                <input type="number" id="cena" name="cena"><br>
+
+                <label for="opis">Opis:</label>
+                <textarea id="opis" name="opis"></textarea><br>
+
+                <button type="submit" id="submitBtn">Dodaj</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="details">
+        <p>Naziv: ...</p>
+        <p>Cena: ...</p>
+        <p>Opis: ...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
