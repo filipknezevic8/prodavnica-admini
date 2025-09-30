@@ -14,6 +14,19 @@ let mis = new Artikal("Miš", 20, "Bežični optički miš");
 
 let proizvodi = [monitor, tv, mis];
 
+function displayDetails(artikal) {
+    let p = document.createElement("p");
+
+    p.innerHTML = "Naziv: " + artikal.naziv + "<br>" +
+                  "Cena: " + artikal.cena + "<br>" +
+                  "Opis: " + artikal.opis;
+
+    let detalji = document.querySelector("#details");
+    detalji.innerHTML = "";
+
+    detalji.appendChild(p);
+}
+
 function popuniTabelu() {
     let tbody = document.querySelector("#productsTable tbody");
     for (let i = 0; i < proizvodi.length; i++) {
@@ -31,6 +44,10 @@ function popuniTabelu() {
         let cellCena = document.createElement("td");
         cellCena.textContent = artikal.cena;
         row.appendChild(cellCena);
+
+        row.addEventListener("click", function() {
+            displayDetails(artikal);
+        });
 
         tbody.appendChild(row);
     }
