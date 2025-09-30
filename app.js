@@ -29,6 +29,7 @@ function displayDetails(artikal) {
 
 function popuniTabelu() {
     let tbody = document.querySelector("#productsTable tbody");
+    tbody.innerHTML = "";
     for (let i = 0; i < proizvodi.length; i++) {
         let artikal = proizvodi[i];
         let row = document.createElement("tr");
@@ -53,4 +54,25 @@ function popuniTabelu() {
     }
 }
 
+function handleFormSubmission() {
+    let submitBtn = document.querySelector('#submitBtn');
+    submitBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const forma = document.querySelector('#productForm');
+        const formData = new FormData(forma);
+
+        const naziv = formData.get("naziv");
+        const cena = parseFloat(formData.get("cena"));
+        const opis = formData.get("opis");
+
+        const novArtikal = new Artikal(naziv, cena, opis);
+        proizvodi.push(novArtikal);
+
+        popuniTabelu();
+        forma.reset();
+    });
+}
+
 popuniTabelu();
+handleFormSubmission();
