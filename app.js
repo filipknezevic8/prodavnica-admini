@@ -8,11 +8,20 @@ class Artikal {
     }
 }
 
-let monitor = new Artikal("Monitor", 165, "24-inčni Full HD monitor");
-let tv = new Artikal("TV", 650, "55-inčni Smart TV");
-let mis = new Artikal("Miš", 20, "Bežični optički miš");
+let proizvodi = [];
 
-let proizvodi = [monitor, tv, mis];
+if (localStorage.getItem("proizvodi")) {
+    let ucitaniPodaci = JSON.parse(localStorage.getItem("proizvodi"));
+    for (let p of ucitaniPodaci) {
+        proizvodi.push(new Artikal(p.naziv, p.cena, p.opis));
+    }
+} else {
+    let monitor = new Artikal("Monitor", 165, "24-inčni Full HD monitor");
+    let tv = new Artikal("TV", 650, "55-inčni Smart TV");
+    let mis = new Artikal("Miš", 20, "Bežični optički miš");
+    proizvodi = [monitor, tv, mis];
+    localStorage.setItem("proizvodi", JSON.stringify(proizvodi));
+}
 
 function displayDetails(artikal) {
     let p = document.createElement("p");
@@ -68,6 +77,8 @@ function handleFormSubmission() {
 
         const novArtikal = new Artikal(naziv, cena, opis);
         proizvodi.push(novArtikal);
+
+        localStorage.setItem("proizvodi", JSON.stringify(proizvodi));
 
         popuniTabelu();
         forma.reset();
